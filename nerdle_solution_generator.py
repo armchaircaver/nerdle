@@ -16,6 +16,8 @@ assumtions:
 
 - division by 1 is not allowed
 
+- d is positive (i.e. d>0)
+
 """
 from itertools import product
 
@@ -30,10 +32,11 @@ def generate_solutions():
       if not( x=='*' and (a==1 or b==1)) and not(y=='*' and (b==1 or c==1)):
         expression = str(a)+x+str(b)+y+str(c)
         d = eval(expression)
-        equation = expression+'='+str(d)
-        if len(equation)==8:
-          yield equation
-          #print(equation)
+        if d > 0:
+          equation = expression+'='+str(d)
+          if len(equation)==8:
+            yield equation
+            #print(equation)
       
    
     # handle division with several separate cases
@@ -52,13 +55,14 @@ def generate_solutions():
     if b!=0 and b!=1 and (a)%b == 0  :
 
       for y in '+-':
-        d= a//b + c if y=='+' else a//b - c 
-        expression = str(a)+x+str(b)+y+str(c)
-        equation = expression+'='+str(d)
-        if len(equation)==8:
-          yield equation
-          #print(equation)
-        
+        d= a//b + c if y=='+' else a//b - c
+        if d > 0:
+          expression = str(a)+x+str(b)+y+str(c)
+          equation = expression+'='+str(d)
+          if len(equation)==8:
+            yield equation
+            #print(equation)
+          
     x='/'
     y='/'
     if b*c != 0 and b!=1 and c!=1 and a%(b*c)==0:
@@ -74,11 +78,12 @@ def generate_solutions():
 
       for x in '+-':
         d= a+b//c if x=='+' else a-b//c
-        expression = str(a)+x+str(b)+y+str(c)
-        equation = expression+'='+str(d)
-        if len(equation)==8:
-          yield equation
-          #print(equation)
+        if d > 0:
+          expression = str(a)+x+str(b)+y+str(c)
+          equation = expression+'='+str(d)
+          if len(equation)==8:
+            yield equation
+            #print(equation)
 
   # now deal with single expressions  a x b = d          
   for a,b in product(range(1,1000),repeat=2):
@@ -89,11 +94,12 @@ def generate_solutions():
       if not( x=='*' and (a==1 or b==1) ):
         expression = str(a)+x+str(b)
         d = eval( expression )
-        equation = expression+'='+str(d)
-        if len(equation)==8:
-          yield equation
-          #print(equation)
-    
+        if d > 0 :
+          equation = expression+'='+str(d)
+          if len(equation)==8:
+            yield equation
+            #print(equation)
+      
     x='/'
     if b>0 and b!=1 and a%b==0:
       d= a//b
