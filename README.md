@@ -18,3 +18,4 @@ The solution generator makes a few assumptions about what constitutes a valid so
 - multiplication by 1 is not allowed in the expression
 
 - division by 1 is not allowed in the expression
+- the right hand side isn't negative
