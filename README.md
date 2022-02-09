@@ -15,7 +15,6 @@ The solution generator makes a few assumptions about what constitutes a valid so
 
 - none of the components of the expression on the left side of the equation is zero
 
-- multiplication by 1 is not allowed in the expression
+- multiplication and divison by 1 is allowed in the expression
 
-- division by 1 is not allowed in the expression
-- the right hand side is strictly positive 
+- the right hand side is not negative, but can be zero 
